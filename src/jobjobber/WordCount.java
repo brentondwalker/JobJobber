@@ -1,4 +1,4 @@
-package wordcount;
+package jobjobber;
 
 import java.io.IOException;
 import java.util.StringTokenizer;
