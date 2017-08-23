@@ -24,7 +24,7 @@ import java.util.Random;
  */
 public class ExponentialJobJobberRecordReader extends RecordReader<LongWritable, DoubleWritable> {
     
-    public double rate = 1.0;
+    public double rate = 1.0;  // WARNING: this is overwritten by the constructor.
     int task_id_counter = 0;
     double current_value = 0.0;
     public static Random random = new Random();
@@ -111,6 +111,7 @@ public class ExponentialJobJobberRecordReader extends RecordReader<LongWritable,
 
         task_id_counter++;
         current_value = -Math.log(random.nextDouble())/rate;
+        System.out.println("rate = "+rate+"  current_value = "+current_value);
 
         // this RecordReader is set up to only return a single record and return false after that
         if (read_once) return false;

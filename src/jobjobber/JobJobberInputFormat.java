@@ -25,7 +25,8 @@ import org.apache.hadoop.mapreduce.lib.reduce.IntSumReducer;
 
 public class JobJobberInputFormat extends InputFormat<LongWritable, DoubleWritable> {
     
-    public static int k = 10;
+    public static int k = 1;
+    public double service_rate = 0.1;
     
     /*
     @Override
@@ -45,7 +46,7 @@ public class JobJobberInputFormat extends InputFormat<LongWritable, DoubleWritab
             InputSplit arg0, TaskAttemptContext arg1)
             throws IOException, InterruptedException {
         System.out.println("INPUTFORMAT-CREATERECORDREADER");
-        return new ExponentialJobJobberRecordReader(0.025);
+        return new ExponentialJobJobberRecordReader(service_rate);
     }
 
     @Override

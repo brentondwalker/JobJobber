@@ -5,6 +5,7 @@ import java.io.DataOutput;
 import java.io.IOException;
 
 import org.apache.hadoop.io.Writable;
+import org.apache.hadoop.mapred.SplitLocationInfo;
 import org.apache.hadoop.mapreduce.InputSplit;
 
 public class JobJobberInputSplit extends InputSplit implements Writable {
@@ -16,7 +17,6 @@ public class JobJobberInputSplit extends InputSplit implements Writable {
      */
     public JobJobberInputSplit() {
         super();
-        System.out.println("INPUTSPLIT");
     }
     
     /**
@@ -40,10 +40,21 @@ public class JobJobberInputSplit extends InputSplit implements Writable {
     public String[] getLocations() throws IOException, InterruptedException {
         System.out.println("INPUTSPLIT-GETLOCATIONS");
         //String[] locations = { "localhost" };
-        String[] locations = { };
+        //String[] locations = { "pc63" };
+        String[] locations = { "pc70.filab.uni-hannover.de" };
+        //String[] locations = { "nodee.hadoop-cluster-lan.spork-join.filab.uni-hannover.de" };
+        // force a stack trace
+        int blab = 5/0;
         return locations;
     }
 
+    @Override
+    public SplitLocationInfo[] getLocationInfo() throws IOException {
+        System.out.println("INPUTSPLIT-GETLOCATIONINFO");
+        SplitLocationInfo[] location_infos = { new SplitLocationInfo("pc70.filab.uni-hannover.de", true) };
+        return location_infos;
+    }
+    
     @Override
     public void readFields(DataInput arg0) throws IOException {
         System.out.println("INPUTSPLIT-READFIELDS");

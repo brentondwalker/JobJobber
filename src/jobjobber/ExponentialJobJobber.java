@@ -68,8 +68,8 @@ public class ExponentialJobJobber {
      */
     public static void main(String[] args) throws Exception {
         Configuration conf = new Configuration();
-        int num_jobs = 5;
-        double rate = 2.0;
+        int num_jobs = 1;
+        double arrival_rate = 0.2;
         Random rng = new Random();
         long app_start_time = System.currentTimeMillis();
         
@@ -92,13 +92,13 @@ public class ExponentialJobJobber {
             //System.exit(job.waitForCompletion(true) ? 0 : 1);
   
             // on the last pass, submit the job and wait for it
-            if (i < (num_jobs-1)) {
+            //if (i < (num_jobs-1)) {
                 job.submit();
-            } else {
-                job.waitForCompletion(true);
-            }
+            //} else {
+            //    job.waitForCompletion(true);
+            //}
             
-            double sleeptime = -Math.log(rng.nextDouble())/rate;
+            double sleeptime = -Math.log(rng.nextDouble())/arrival_rate;
             Thread.sleep((long)(sleeptime * 1000));
         }
     }
